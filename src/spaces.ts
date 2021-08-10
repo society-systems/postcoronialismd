@@ -55,9 +55,9 @@ export function sqlInsertSpace(
   } catch (e) {
     if (e.toString() === "SqliteError: UNIQUE constraint failed: spaces.name") {
       throw new DuplicateEntity();
-    } else if (
-      e.toString() === "SqliteError: CHECK constraint failed: spaces"
-    ) {
+    } else if (e.toString() === "SqliteError: CHECK constraint failed: length(name) <= 64") {
+      throw new ConstraintError();
+    } else if (e.toString() === "SqliteError: CHECK constraint failed: spaces") {
       throw new ConstraintError();
     } else {
       throw e;

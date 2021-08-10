@@ -95,6 +95,8 @@ export function sqlInsertUser(
       "SqliteError: UNIQUE constraint failed: users.name, users.spaceName"
     ) {
       throw new DuplicateEntity();
+    } else if (e.toString() === "SqliteError: CHECK constraint failed: length(name) <= 64") {
+      throw new ConstraintError();
     } else if (e.toString() === "SqliteError: CHECK constraint failed: users") {
       throw new ConstraintError();
     } else {

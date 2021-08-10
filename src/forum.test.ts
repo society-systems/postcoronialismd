@@ -106,18 +106,6 @@ describe("SQL constraints for Spaces", () => {
     const replies = getPosts(db, finn.publicKey, postId, 10, 0);
     expect(replies).toEqual([
       {
-        id: replyId,
-        title: "reply title",
-        body: "reply body",
-        publicKey: uint8ArrayToHexString(jake.publicKey),
-        name: "Jake",
-        ts: replyTs,
-        lastTs: replyTs,
-        seen: null,
-        seenTs: null,
-        parentId: postId,
-      },
-      {
         id: replyId2,
         title: "reply title 2",
         body: "reply body 2",
@@ -125,6 +113,18 @@ describe("SQL constraints for Spaces", () => {
         name: "Finn",
         ts: replyTs2,
         lastTs: replyTs2,
+        seen: null,
+        seenTs: null,
+        parentId: postId,
+      },
+      {
+        id: replyId,
+        title: "reply title",
+        body: "reply body",
+        publicKey: uint8ArrayToHexString(jake.publicKey),
+        name: "Jake",
+        ts: replyTs,
+        lastTs: replyTs,
         seen: null,
         seenTs: null,
         parentId: postId,
@@ -225,7 +225,7 @@ describe("SQL constraints for Spaces", () => {
     posts = getPosts(db, finn.publicKey, "", 10, 0);
     expect(posts.map(({ id }) => id)).toEqual([postId, postId2]);
     let replies = getPosts(db, finn.publicKey, postId, 10, 0);
-    expect(replies.map(({ id }) => id)).toEqual([replyId, replyId2, replyId3]);
+    expect(replies.map(({ id }) => id)).toEqual([replyId3, replyId2, replyId]);
   });
   /*
   test("Return all posts without a parent", () => {
