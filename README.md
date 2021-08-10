@@ -1,6 +1,20 @@
-# psst is a JSONRPC server to manage popup communities
+# psstd is a JSONRPC server to manage popup communities
 
-More info soon :)
+```
+npm install psstd
+psstd generate-vapid-keys me@example.com > .env
+#                         ^-- use your email address pls
+psstd
+```
+
+## Development
+
+```
+npm install psstd
+npm run build
+npm link
+npm start
+```
 
 ## Authentication
 
