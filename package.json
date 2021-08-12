@@ -1,7 +1,7 @@
 {
-  "name": "psstd",
+  "name": "postcoronialismd",
   "version": "0.0.1",
-  "description": "Psst! Want to know a secret?",
+  "description": "Daemon for postcoronialism",
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",

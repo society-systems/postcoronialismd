@@ -1,5 +1,5 @@
 import { IContext } from "../context";
-import { PsstError } from "../errors";
+import { DaemonError } from "../errors";
 import { hexStringToUint8Array, uint8ArrayToHexString } from "../f";
 import { getSecret, setSecret } from "../secrets";
 import { createSpace, hasSpace, join, verifyInvite } from "../spaces";
@@ -22,7 +22,7 @@ function callbackify(f: any) {
       const r = f(context.user, ...args);
       callback(null, r);
     } catch (error) {
-      if (error instanceof PsstError) {
+      if (error instanceof DaemonError) {
         callback({
           code: error.code,
           message: error.toString(),

@@ -1,13 +1,13 @@
-export class PsstError extends Error {
+export class DaemonError extends Error {
   code: Number;
   constructor(message: string) {
     super(message);
     this.code = -32000;
-    Object.setPrototypeOf(this, PsstError.prototype);
+    Object.setPrototypeOf(this, DaemonError.prototype);
   }
 }
 
-export class InvalidSignature extends PsstError {
+export class InvalidSignature extends DaemonError {
   constructor() {
     super("Invalid signature");
     this.code = -32001;
@@ -15,7 +15,7 @@ export class InvalidSignature extends PsstError {
   }
 }
 
-export class InviteExpired extends PsstError {
+export class InviteExpired extends DaemonError {
   constructor() {
     super("Invite expired");
     this.code = -32002;
@@ -23,7 +23,7 @@ export class InviteExpired extends PsstError {
   }
 }
 
-export class InvalidInviteSignature extends PsstError {
+export class InvalidInviteSignature extends DaemonError {
   constructor() {
     super("Invite is not signed by an admin");
     this.code = -32003;
@@ -31,7 +31,7 @@ export class InvalidInviteSignature extends PsstError {
   }
 }
 
-export class InviteAlreadyUsed extends PsstError {
+export class InviteAlreadyUsed extends DaemonError {
   constructor() {
     super("Invite already used");
     this.code = -32004;
@@ -39,7 +39,7 @@ export class InviteAlreadyUsed extends PsstError {
   }
 }
 
-export class ConstraintError extends PsstError {
+export class ConstraintError extends DaemonError {
   constructor() {
     super("Name too long");
     this.code = -32005;
@@ -47,7 +47,7 @@ export class ConstraintError extends PsstError {
   }
 }
 
-export class DuplicateEntity extends PsstError {
+export class DuplicateEntity extends DaemonError {
   constructor() {
     super("Duplicate entity");
     this.code = -32006;
@@ -55,7 +55,7 @@ export class DuplicateEntity extends PsstError {
   }
 }
 
-export class Unauthorized extends PsstError {
+export class Unauthorized extends DaemonError {
   constructor() {
     super("I'm sorry Dave, I'm afraid I can't do that");
     this.code = -32403;

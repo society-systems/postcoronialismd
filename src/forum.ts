@@ -5,7 +5,7 @@ import { sha256, uint8ArrayToHexString } from "./f";
 import { getUser } from "./users";
 import fs from "fs";
 import path from "path";
-import { sendNotifications } from "./subscriptions";
+// import { sendNotifications } from "./subscriptions";
 
 const SQL_STATEMENTS = fs.readFileSync(
   path.resolve(__dirname, "forum.sql"),
@@ -237,12 +237,14 @@ export function addPost(
     throw new Unauthorized();
   }
   sqlCreatePost(db, id, user, userData.spaceName, parentId, title, body);
+  /*
   sendNotifications(
     db,
     userData.spaceName,
     uint8ArrayToHexString(user),
     `${userData.spaceName}: new post!`
   );
+  */
   return id;
 }
 

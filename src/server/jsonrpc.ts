@@ -33,8 +33,8 @@ export function jsonrpc(server: Server) {
 }
 
 export function verifySignature(req: Request, res: Response, buf: Buffer) {
-  const publicKey = req.get("psst-public-key");
-  const signature = req.get("psst-signature");
+  const publicKey = req.get("postcoronialism-public-key");
+  const signature = req.get("postcoronialism-signature");
   if (publicKey && signature) {
     if (
       nacl.sign.detached.verify(

@@ -10,7 +10,7 @@ import { listen } from "./server";
 
 const program = new Command();
 
-program.name("psst");
+program.name("postcoronialismd");
 program.version("0.0.1");
 
 program
@@ -28,7 +28,7 @@ program
 
 program
   .command("daemon", { isDefault: true })
-  .description("run the psst daemon")
+  .description("run the postcoronialism daemon")
   .action(() => {
     const context = getContext();
     listen(context);

@@ -21,18 +21,18 @@ const context: IContextWrapper = {};
 
 function getConfig(): IConfig {
   return {
-    location: process.env.DB_PATH || "psst.sqlite",
+    location: process.env.DB_PATH || "postcoronialism.sqlite",
     port: parseInt(process.env.PORT || "8001", 10),
   };
 }
 
 export function getContext(overrides?: IConfig) {
   // FIXME: move it somewhere else
-  webpush.setVapidDetails(
-    "mailto:" + process.env.VAPID_EMAIL || "",
-    process.env.VAPID_PUBLIC_KEY || "",
-    process.env.VAPID_PRIVATE_KEY || ""
-  );
+  //webpush.setVapidDetails(
+  //  "mailto:" + process.env.VAPID_EMAIL || "",
+  //  process.env.VAPID_PUBLIC_KEY || "",
+  //  process.env.VAPID_PRIVATE_KEY || ""
+  //);
 
   if (!context.current || overrides) {
     const config = {

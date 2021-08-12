@@ -34,8 +34,8 @@ describe("JSONRPC", () => {
       .post("/")
       .send(body)
       .set("content-type", "application/json")
-      .set("psst-public-key", uint8ArrayToHexString(keyPair.publicKey))
-      .set("psst-signature", uint8ArrayToHexString(signature))
+      .set("postcoronialism-public-key", uint8ArrayToHexString(keyPair.publicKey))
+      .set("postcoronialism-signature", uint8ArrayToHexString(signature))
       .expect(200);
 
     expect(res.body.result).toEqual(uint8ArrayToHexString(keyPair.publicKey));
@@ -53,8 +53,8 @@ describe("JSONRPC", () => {
       .post("/")
       .send(body)
       .set("content-type", "application/json")
-      .set("psst-public-key", uint8ArrayToHexString(keyPair.publicKey.slice(1)))
-      .set("psst-signature", uint8ArrayToHexString(signature))
+      .set("postcoronialism-public-key", uint8ArrayToHexString(keyPair.publicKey.slice(1)))
+      .set("postcoronialism-signature", uint8ArrayToHexString(signature))
       .expect(403);
   });
 
@@ -71,10 +71,10 @@ describe("JSONRPC", () => {
       .send(body)
       .set("content-type", "application/json")
       .set(
-        "psst-public-key",
+        "postcoronialism-public-key",
         uint8ArrayToHexString(nacl.sign.keyPair().publicKey)
       )
-      .set("psst-signature", uint8ArrayToHexString(signature))
+      .set("postcoronialism-signature", uint8ArrayToHexString(signature))
       .expect(403);
   });
 
