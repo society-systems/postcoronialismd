@@ -94,20 +94,20 @@ FROM
         SELECT posts.id, MAX(max(posts.ts), max(IFNULL(replies.ts, 0))) as lastTs
         FROM posts
         LEFT OUTER JOIN posts as replies
-        ON posts.id = replies.parentId
+        ON posts.id IS replies.parentId
         WHERE replies.publicKey IS NOT $publicKey
         GROUP BY posts.id
       ) AS timestamps
         ON posts.id = timestamps.id
     LEFT OUTER JOIN posts AS replies
-        on posts.id = replies.parentId
+        on posts.id IS replies.parentId
     LEFT OUTER JOIN seen
         ON posts.id = seen.threadId
             AND seen.publicKey = $publicKey
 
 WHERE
     posts.spaceName = $spaceName
-    AND posts.parentId = $parentId
+    AND posts.parentId IS $parentId
 
 GROUP BY
     posts.id
@@ -132,7 +132,7 @@ export function sqlCreatePost(
   id: string,
   publicKey: Uint8Array,
   spaceName: string,
-  parentId: string,
+  parentId: string|null,
   title: string,
   body: string
 ) {
@@ -181,7 +181,7 @@ export function sqlGetPosts(
   db: Database,
   publicKey: Uint8Array,
   spaceName: string,
-  parentId: string,
+  parentId: string|null,
   limit: number,
   offset: number
 ) {
@@ -227,7 +227,7 @@ export function sqlSeenDelete(
 export function addPost(
   db: Database,
   user: Uint8Array,
-  parentId: string,
+  parentId: string|null,
   title: string,
   body: string
 ) {
@@ -292,7 +292,7 @@ export function markPostAsUnseen(db: Database, user: Uint8Array, id: string) {
 export function getPosts(
   db: Database,
   user: Uint8Array,
-  parentId: string,
+  parentId: string|null,
   limit: number,
   offset: number
 ) {
